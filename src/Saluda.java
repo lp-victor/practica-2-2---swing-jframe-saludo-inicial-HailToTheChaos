@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 public class Saluda extends javax.swing.JFrame {
 
-    public Saluda() {        
+    public Saluda() {
         initComponents();
     }
 
@@ -21,6 +21,8 @@ public class Saluda extends javax.swing.JFrame {
         Imagen = new javax.swing.JLabel();
         saluda = new javax.swing.JButton();
         nombre = new javax.swing.JTextField();
+        apellido = new javax.swing.JTextField();
+        instruccion_apellido = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Saludar");
@@ -41,41 +43,48 @@ public class Saluda extends javax.swing.JFrame {
 
         nombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        apellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        apellido.setToolTipText("");
+        apellido.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
+        instruccion_apellido.setText("Escribe el apellido del usuario:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(150, 150, 150)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(175, 175, 175)
-                        .addComponent(Instruccion))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(Imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 160, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(220, 220, 220)
-                        .addComponent(saluda))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(saluda))
+                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(instruccion_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Instruccion))))
+                .addGap(0, 129, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Instruccion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Instruccion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(instruccion_apellido)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(saluda)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(60, 60, 60))
         );
 
         pack();
@@ -85,12 +94,27 @@ public class Saluda extends javax.swing.JFrame {
     private void saludaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saludaActionPerformed
         // TODO add your handling code here:
         JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "¡Hola " + nombre.getText() + "!");
+
+        if (nombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(jFrame, "Error: se debe de rellenar el nombre.");
+
+        } else if (apellido.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(jFrame, "Error: se debe de rellenar el apellido.");
+
+        } else if (nombre.getText().length() < 5) {
+            JOptionPane.showMessageDialog(jFrame, "Error: el nombre tiene que contener por lo menos 5 carácteres.");
+
+        } else if (nombre.getText().matches(".*[0-9].*") || apellido.getText().matches(".*[0-9].*")) {
+            JOptionPane.showMessageDialog(jFrame, "Error: no puede contener números.");
+
+        } else {
+            JOptionPane.showMessageDialog(jFrame, "¡Hola " + nombre.getText() + " " + apellido.getText() + "!");
+            nombre.setText(null);
+            apellido.setText(null);
+        }
+
     }//GEN-LAST:event_saludaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -127,6 +151,8 @@ public class Saluda extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Imagen;
     private javax.swing.JLabel Instruccion;
+    private javax.swing.JTextField apellido;
+    private javax.swing.JLabel instruccion_apellido;
     private javax.swing.JTextField nombre;
     private javax.swing.JButton saluda;
     // End of variables declaration//GEN-END:variables
