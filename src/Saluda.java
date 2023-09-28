@@ -67,7 +67,7 @@ public class Saluda extends javax.swing.JFrame {
                             .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(instruccion_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Instruccion))))
-                .addGap(0, 129, Short.MAX_VALUE))
+                .addGap(129, 129, 129))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,11 +80,11 @@ public class Saluda extends javax.swing.JFrame {
                 .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(instruccion_apellido)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(saluda)
-                .addGap(60, 60, 60))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pack();
@@ -96,13 +96,13 @@ public class Saluda extends javax.swing.JFrame {
         JFrame jFrame = new JFrame();
 
         if (nombre.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(jFrame, "Error: se debe de rellenar el nombre.");
+            JOptionPane.showMessageDialog(jFrame, "Error: el campo del nombre no puede estar vacio.");
 
         } else if (apellido.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(jFrame, "Error: se debe de rellenar el apellido.");
+            JOptionPane.showMessageDialog(jFrame, "Error: el campo del apellido no puede estar vacio.");
 
         } else if (nombre.getText().length() < 5) {
-            JOptionPane.showMessageDialog(jFrame, "Error: el nombre tiene que contener por lo menos 5 carácteres.");
+            JOptionPane.showMessageDialog(jFrame, "Error: el nombre tiene que tener por lo menos 5 carácteres.");
 
         } else if (nombre.getText().matches(".*[0-9].*") || apellido.getText().matches(".*[0-9].*")) {
             JOptionPane.showMessageDialog(jFrame, "Error: no puede contener números.");
